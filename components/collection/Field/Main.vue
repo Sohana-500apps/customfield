@@ -76,6 +76,7 @@ if(confirm('Are you sure to delete this record?')){
 //saving the custom Field
 
 const saveField=(addForm)=>{
+  // console.log("addform0",addForm)
 useAuthLazyFetchPost(`${props.url}/`, {
     body: {
       project_id:'1',
@@ -96,13 +97,11 @@ useAuthLazyFetchPost(`${props.url}/`, {
 //Editing the custom Field
 
 const editFieldListener=(field,editFieldForm)=>{
- useAuthLazyFetchPut(`${props.url}/${field.uid}?name=${editFieldForm.name}?description=${editFieldForm.description}?placeholder=${editFieldForm.placeholder}?type=${editFieldForm.type}`, {
+ useAuthLazyFetchPut(`${props.url}/${field.uid}?name=${editFieldForm.name}&description=${editFieldForm.description}&placeholder=${editFieldForm.placeholder}&type=${editFieldForm.type}`, {
     body: {
       name:editFieldForm.name,
-      entity:'CONTACTS',
+      entity:field.entity,
       type_data:{
-        is_required:1,
-        show_in_filter:1,
         description:editFieldForm.description,
       placeholder:editFieldForm.placeholder,
       },
